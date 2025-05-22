@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Price Predictor</title>
+    <style>
+        body { font-family: Arial; padding: 30px; background: #f4f4f4; }
+        .box { background: white; padding: 20px; max-width: 500px; margin: auto; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        h2 { text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>House Price Prediction</h2>
+        <form method="POST" action="/predict">
+            <label>Location:</label>
+            <input type="text" name="location" required>
+
+            <label>Condition:</label>
+            <select name="condition" required>
+                <option>New</option>
+                <option>Old</option>
+                <option>Fairly Used</option>
+            </select>
+
+            <label>Bedrooms:</label>
+            <input type="number" name="bedrooms" required>
+
+            <label>Bathrooms:</label>
+            <input type="number" name="bathrooms" required>
+
+            <label>Size (in m²):</label>
+            <input type="number" name="size" step="0.01" required>
+
+            <label>Year Built:</label>
+            <input type="number" name="year" required>
+
+            <button type="submit">Predict Price</button>
+        </form>
+        {% if prediction %}
+            <h3 style="text-align: center; margin-top: 20px;">Predicted Price: {{ prediction }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
